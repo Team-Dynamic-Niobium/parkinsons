@@ -1,14 +1,26 @@
 name: parkinsonstest1
 rules:
   0:
-    name: 'test'
-    action binary: 1
-    action value: 'lambda x,y: sum(x)'
+    name: 'linearity'
+    action binary: 'True if trial["lin"] > 10 else False' #should be changed to a function that evaluates if the function applied
+    action input: 'trial["lin"]'
+    action value: 'lambda x: x**2'
   1:
-    name: 'test1'
-    action binary: 0
-    action value: 'lambda x,y: sum(y)'
+    name: 'sum of x and y'
+    action binary: 'True'
+    action input: '[trial["raw"]["x"],trial["raw"]["y"]]'
+    action value: 'lambda x: sum(x[0]) + sum(x[1])'
   2:
-    name: 'test2'
-    action binary: 1
-    action value: 'lambda x,y: sum(x) + sum(y)'
+    name: 'time of flight'
+    action binary: 'True'
+    action input: 'len(trial["raw"]["x"])'
+    action value: 'lambda x: x'
+  3:
+    name: 'padding'
+    action binary: 'True'
+    action input: 'len(trial["rawz"]["x"]) - len(trial["raw"]["x"])'
+    action value: 'lambda x: x'
+
+
+    # an actual linear regression (r^2) term
+    #interaction terms
