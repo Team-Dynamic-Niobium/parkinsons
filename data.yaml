@@ -1,0 +1,14 @@
+name: parkinsonstest1
+rules:
+  0:
+    name: 'test'
+    action binary: 1
+    action value: 'lambda x,y: sum(x)'
+  1:
+    name: 'test1'
+    action binary: 0
+    action value: 'lambda x,y: sum(y)'
+  2:
+    name: 'test2'
+    action binary: 1
+    action value: 'lambda x,y: sum(x) + sum(y)'
