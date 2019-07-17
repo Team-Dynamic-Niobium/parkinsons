@@ -1,0 +1,7 @@
+class maketrial(dict): #create trial class to easily store trials as dicts without passing around dicts
+    def __init__(self, *args, **kwargs): #allows you to use x.y instead of x['y']
+        super(maketrial, self).__init__(*args, **kwargs)
+        self.__dict__ = self
+    def add(self,attr,val): #add entry to the trial or dictionary
+        self[attr] = val
+  

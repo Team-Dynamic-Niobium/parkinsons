@@ -24,14 +24,19 @@ def linearity(trial,show = False):
     maxdist = 0.0
     maxp1 = [0,0]
     maxp2 = [0,0]
+    oldi = 0.0
+    oldy = 0.0
     for i in r[1:-1]:   
-        y = gety(i)
-        perpx = perpintersect(i)
-        perpx = perpx[0]
-        temp = ((i - perpx)**2 + (y - func(perpx))**2)
-        dist = math.sqrt(temp)
-        #alldist.append(abs(dist))
-        alldist[(i,y)] = {'dist':dist,'x2':perpx,'y2':func(perpx)}
+        y = gety(i)   
+        if not i == oldi:
+            if not y == oldy:
+                perpx = perpintersect(i)
+                perpx = perpx[0]
+                temp = ((i - perpx)**2 + (y - func(perpx))**2)
+                dist = math.sqrt(temp)
+                #alldist.append(abs(dist))
+                alldist[(i,y)] = {'dist':dist,'x2':perpx,'y2':func(perpx)}
+        oldi,oldy = i,y 
 
     
     df = pd.DataFrame.from_dict(alldist).T
